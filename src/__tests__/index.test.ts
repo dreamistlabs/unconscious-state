@@ -1,6 +1,10 @@
 import test from 'ava';
 import { sayHello } from '..';
 
-test('my passing test', (t: any) => {
+interface T {
+  is: any;
+}
+
+test('my passing test', (t: T): void => {
   t.is(sayHello(), 'hi');
 });

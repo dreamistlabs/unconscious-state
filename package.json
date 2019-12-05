@@ -2,7 +2,7 @@
   "name": "@dreamistlabs/unconscious-state",
   "private": true,
   "version": "0.0.0-beta-0",
-  "description": "Finn helps you calculate financial data",
+  "description": "",
   "homepage": "https://github.com/dreamistlabs/unconscious-state#readme",
   "author": "Johnny Hu <johnny@dreamistlabs.com>",
   "main": "dist/index.js",
@@ -23,19 +23,19 @@
   "scripts": {
     "build": "tsc",
     "coveralls": "nyc report --reporter=text-lcov | coveralls",
-    "pre-push": "npm run tslint && npm run test",
+    "lint": "eslint . --ext .ts,.tsx,.js,.jsx",
+    "pre-push": "npm run lint && npm run test",
     "prepublishOnly": "npm run build",
     "release:major": "changelog -M && git add CHANGELOG.md && git commit -m 'updated CHANGELOG.md' && npm version major && git push origin && git push origin --tags",
     "release:minor": "changelog -m && git add CHANGELOG.md && git commit -m 'updated CHANGELOG.md' && npm version minor && git push origin && git push origin --tags",
     "release:patch": "changelog -p && git add CHANGELOG.md && git commit -m 'updated CHANGELOG.md' && npm version patch && git push origin && git push origin --tags",
     "test": "nyc ava",
     "test:watch": "ava --watch",
-    "tslint": "tslint -c tslint.json -p tsconfig.json src/**/*.ts",
     "watch": "tsc -w"
   },
   "husky": {
     "hooks": {
-      "commit-msg": "npm run tslint && commitlint -E HUSKY_GIT_PARAMS",
+      "commit-msg": "npm run lint && commitlint -E HUSKY_GIT_PARAMS",
       "pre-push": "npm run pre-push"
     }
   },
@@ -44,8 +44,13 @@
     "@dreamistlabs/config-commitlint": "^1.0.3",
     "@istanbuljs/nyc-config-typescript": "^0.1.3",
     "@types/node": "^12.12.8",
+    "@typescript-eslint/eslint-plugin": "^2.10.0",
+    "@typescript-eslint/parser": "^2.10.0",
     "ava": "^1.2.1",
     "coveralls": "^3.0.7",
+    "eslint": "^6.7.2",
+    "eslint-config-prettier": "^6.7.0",
+    "eslint-plugin-prettier": "^3.1.1",
     "generate-changelog": "^1.8.0",
     "husky": "^3.0.9",
     "nyc": "^14.1.1",
